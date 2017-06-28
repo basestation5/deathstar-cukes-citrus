@@ -8,25 +8,20 @@
     <artifactId>deathstar-cukes</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <citrus.version>2.7.1</citrus.version>
+        <cucumber.version>1.2.5</cucumber.version>
+        <slf4j.version>1.7.22</slf4j.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>1.2.4</version>
         </dependency>
 
         <dependency>
@@ -35,6 +30,69 @@
             <version>4.3.9.RELEASE</version>
         </dependency>
 
+        <!-- Cucumber -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- End Cucumber -->
+
+        <!-- Citrus -->
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-core</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-java-dsl</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-http</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-cucumber</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- End Citrus -->
+
+        <!-- Logging -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- End Logging -->
 
     </dependencies>
 </project>
