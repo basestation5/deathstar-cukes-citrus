@@ -2,6 +2,7 @@ package com.thedeathstar.steps;
 
 import com.consol.citrus.config.CitrusSpringConfig;
 import com.consol.citrus.dsl.design.TestDesigner;
+import com.consol.citrus.message.MessageType;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
@@ -28,7 +29,7 @@ public class GivenCukeSteps {
    private HttpClient deathStarClient;
 
     @Given("^There are two deathstars in the Galaxy$")
-    public void ConfirmTwoDeathStarsExist() throws Throwable {
+    public void ConfirmTwoDeathStarsExistBeforeTests() throws Throwable {
 
         designer.http()
                 .client(deathStarClient)
@@ -38,8 +39,11 @@ public class GivenCukeSteps {
         designer.http()
                 .client(deathStarClient)
                 .receive()
-                .response(HttpStatus.OK);
-        //.payload(String.valueOf(2));
+                .response(HttpStatus.OK)
+                .messageType(MessageType.JSON)
+                .validate("$.deathstars[0].id", "DS-1")
+                .validate("$.deathstars[1].id", "DS-2");
+
     }
 
 }

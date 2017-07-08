@@ -4,13 +4,11 @@ import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.config.CitrusSpringConfig;
 import com.consol.citrus.dsl.design.TestDesigner;
 import com.consol.citrus.http.client.HttpClient;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import com.consol.citrus.message.MessageType;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ContextConfiguration;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by Jeremy on 7/7/17.
@@ -26,7 +24,7 @@ public class WhenCukeSteps {
     private HttpClient deathStarClient;
 
     @When("^I call the Deathstar Service$")
-    public void i_call_the_Deathstar_Service() throws Throwable {
+    public void ConfirmDeathStarServiceIsUp() throws Throwable {
 
         designer.http()
                 .client(deathStarClient)
@@ -41,8 +39,19 @@ public class WhenCukeSteps {
     }
 
     @When("^I add a Deathstar to the DeathStar Service$")
-    public void i_add_a_Deathstar_to_the_DeathStar_Service() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new PendingException();
+    public void AddDeathstar() throws Throwable {
+
+        designer.http()
+                .client(deathStarClient)
+                .send()
+                .post("/todolist")
+                .messageType(MessageType.JSON)
+                .contentType("application/json")
+                .payload("{ \"id\": \"DS-3\", \"name\": \"Death Star Three\"}");
+
+        designer.http()
+                .client(deathStarClient)
+                .receive()
+                .response(HttpStatus.NOT_FOUND);
     }
 }
