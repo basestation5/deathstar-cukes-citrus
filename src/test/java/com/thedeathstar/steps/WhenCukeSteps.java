@@ -39,7 +39,7 @@ public class WhenCukeSteps {
     }
 
     @When("^I add a Deathstar to the DeathStar Service$")
-    public void AddDeathstar() throws Throwable {
+    public void AddDeathStar() throws Throwable {
 
         designer.http()
                 .client(deathStarClient)
